@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        /* Hidden state for mobile menu */
+        #mobileDrawer { transform: translateX(100%); transition: transform 0.3s ease-in-out; }
+        #mobileDrawer.open { transform: translateX(0); }
+    </style>
+</head>
+<body>
+    
+    <nav class="bg-orange-50/90 backdrop-blur-md border-b border-orange-100 px-6 py-5 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+            <div class="flex items-center space-x-2">
+                <div class="bg-amber-700 p-2 rounded-lg text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.5a5 5 0 11-7 0m7 0a5 5 0 10-7 0m7 0V13m-7 2.5V13m0-5V7a3 3 0 016 0v1m-6-1a3 3 0 00-6 0v1m0 0V13m0 2.5a5 5 0 11-7 0m7 0a5 5 0 10-7 0m7 0V13" />
+                    </svg>
+                </div>
+                <span class="text-2xl font-serif font-bold tracking-tight">Мамины деликатесы</span>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-12">
+                <a  href="/story.html" class="font-medium hover:text-amber-600 transition tracking-wide uppercase text-sm">Our Story</a>
+                <a href="/menu.html" class="font-medium hover:text-amber-600 transition tracking-wide uppercase text-sm">Fresh Menu</a>
+                
+                <a  href="/location.html" class="font-medium hover:text-amber-600 transition tracking-wide uppercase text-sm">Locations</a>
+            </div>
+            
+
+            <button id="openMenu" class="md:hidden p-2 text-amber-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+                </svg>
+                
+            </button>
+        </div>
+        
+    </nav>
+
+
+   <div id="mobileDrawer" class="fixed inset-0 bg-amber-900 z-[60] flex flex-col items-center justify-center space-y-8 text-white text-2xl font-serif">
+        <button id="closeMenu" class="absolute top-8 right-8 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <a href="/story.html" class="mobile-link">Our Story</a>
+        <a href="/menu.html" class="mobile-link">Fresh Menu</a>
+        <a href="/location.html" class="mobile-link">Locations</a>
+    </div>
+
+       <script>
+        // 1. DATA: This is like your "Database"
+        const bakeryProducts = [
+            {
+                name: "Heritage Sourdough",
+                desc: "48-hour fermented rustic loaf.",
+                img: "https://images.unsplash.com/photo-1585478259715-876acc5be8eb?w=600&auto=format"
+            },
+            {
+                name: "Almond Croissant",
+                desc: "Twice-baked with house-made frangipane.",
+                img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&auto=format"
+            },
+            {
+                name: "French Baguette",
+                desc: "Traditional levain with a shattered crust.",
+                img: "https://images.unsplash.com/photo-1597079910443-60c43fc4f729?w=600&auto=format"
+            }
+        ];
+
+        // 2. RENDER: Put the data on the screen
+        const menuGrid = document.getElementById('menuGrid');
+        
+        function displayMenu() {
+            menuGrid.innerHTML = bakeryProducts.map(product => `
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden rounded-2xl mb-6 shadow-lg border-4 border-white">
+                        <img src="${product.img}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold mb-2">${product.name}</h3>
+                    <p class="text-amber-800/60">${product.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        // 3. INTERACTION: Mobile Menu Toggle
+        const openBtn = document.getElementById('openMenu');
+        const closeBtn = document.getElementById('closeMenu');
+        const drawer = document.getElementById('mobileDrawer');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleDrawer() {
+            drawer.classList.toggle('open');
+            document.body.classList.toggle('overflow-hidden'); // Stop scrolling when menu is open
+        }
+
+        openBtn.addEventListener('click', toggleDrawer);
+        closeBtn.addEventListener('click', toggleDrawer);
+        
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleDrawer);
+        });
+
+        // Initialize
+        displayMenu();
+    </script>
+
+
+
+
+
+
+
+
+  
+
+<section class="bg-orange-50 py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-serif font-bold text-amber-900 mb-4">Посетите Нас</h2>
+      <div class="w-24 h-1 bg-amber-700 mx-auto rounded-full"></div>
+      <p class="mt-6 text-amber-800/70 max-w-xl mx-auto italic">
+       Мы находимся в Мирзо-Улугбекском районе и всегда рады гостям, которые ценят настоящий домашний вкус и качество.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-stretch">
+      
+      <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-orange-100 flex flex-col justify-between">
+        <div>
+          <h3 class="text-2xl font-serif font-bold text-amber-900 mb-6 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Мирзо Улугбекская область
+          </h3>
+          
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-amber-900 uppercase tracking-widest text-xs mb-1">Адрес</p>
+              <p class="text-lg text-amber-800/80">X-med<br/>Ismailata Street 91B</p>
+            </div>
+
+            <div>
+              <p class="font-bold text-amber-900 uppercase tracking-widest text-xs mb-1">Рабочее время</p>
+              <ul class="text-amber-800/80 space-y-1">
+                <li class="flex justify-between border-b border-orange-50 py-1"><span>Пн — Пт</span> <span>9:00 AM - 22:00 PM</span></li>
+                <li class="flex justify-between border-b border-orange-50 py-1"><span>Суббота</span> <span>9:00 AM - 22:00 PM</span></li>
+                <li class="flex justify-between py-1 text-amber-600 font-medium"><span>Воскресенье</span> <span> 9:00 AM - 22:00 PM (Открыто)</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="font-bold text-amber-900 uppercase tracking-widest text-xs mb-1">Свяжитесь с нами</p>
+              
+              <p  class="text-lg text-amber-800/80"> (90) 956 01 69</p>
+            </div>
+          </div>
+        </div>
+
+         <a target="_blank" href="https://maps.app.goo.gl/JQEHkAChW6AepQdm7"> <button class="mt-10 w-full border-2 border-amber-800 text-amber-800 py-3 rounded-full font-bold hover:bg-amber-800 hover:text-white transition-colors duration-300">
+          Проложить маршрут
+        </button>  </a>
+      </div>
+
+      <div class="relative min-h-[400px] rounded-3xl overflow-hidden shadow-inner bg-amber-100 border-4 border-white">
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-amber-800/40 p-10 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          <p class="font-serif italic text-xl">Map view coming soon</p>
+          <p class="text-sm mt-2 font-sans uppercase tracking-widest"><iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d5991.169057114149!2d69.322508!3d41.339647!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDIwJzIyLjciTiA2OcKwMTknMjEuMCJF!5e0!3m2!1sru!2s!4v1768069749702!5m2!1sru!2s" width="800" height="980" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+        </div>
+        
+        <div class="absolute inset-0 bg-amber-900/5 pointer-events-none"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<a href="/index.html" 
+   class="fixed bottom-8 right-8 bg-amber-800 text-white px-6 py-3 rounded-full shadow-2xl transition-all duration-300 hover:bg-amber-900 hover:-translate-y-1 flex items-center space-x-2 z-[100] font-sans font-bold uppercase tracking-widest text-xs">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+  </svg>
+  
+  <span>Back to Home</span>
+</a>
+
+
+
+
+
+
+
+
+</body>
+</html>
